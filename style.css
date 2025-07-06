@@ -9,14 +9,31 @@
   --warning-color: #f39c12;
   --light-bg: #f8f9fa;
   --dark-bg: #2c3e50;
-  --text-dark: #2c3e50;
-  --text-light: #6c757d;
+  --text-dark: #15d1df;
+  --text-light: #ffffff;
   --border-color: #e9ecef;
   --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 5px 30px rgba(0, 0, 0, 0.15);
   --border-radius: 12px;
   --transition: all 0.3s ease;
 }
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+
 
 /* Base Styles */
 * {
@@ -26,6 +43,8 @@
 }
 
 body {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
@@ -90,51 +109,57 @@ p {
 .main-content {
   margin-top: 80px;
   min-height: calc(100vh - 80px);
+  background: transparent;
 }
 
-/* Hero Section */
+/* Hero Section Transparent Background */
 .hero-section {
-  background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9)),
-              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23f8f9fa;stop-opacity:1" /><stop offset="100%" style="stop-color:%23e9ecef;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23bg)"/></svg>');
-  background-size: cover;
-  background-position: center;
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  position: relative;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    background: transparent;
 }
 
+/* Optional Overlay for better text readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 2;
+}
+
+/* Hero content on top of overlay */
 .hero-content {
-  max-width: 800px;
-  padding: 2rem;
+    position: relative;
+    z-index: 3;
+    color: #fff;
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+.hero-buttons .btn {
+    margin: 0 10px;
 }
 
 /* Page Headers */
 .page-header {
-  background: linear-gradient(135deg, var(--light-bg), #ffffff);
+  background: transparent;
   padding: 4rem 0 2rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
@@ -173,29 +198,67 @@ p {
 }
 
 /* Cards */
+.menu-section {
+  padding: 40px;
+  background: linear-gradient(to bottom, #ffd5c0, #ffe3ca);
+}
+
+.menu-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
 .card {
-  border: none;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  color: black; /* Make all text inside card-body black */
+}
+
+.card-title,
+.card-text,
+.price {
+  color: black !important; /* Force black text even if overridden elsewhere */
+}
+
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #666;
 }
 
 .card-header {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 1.5rem;
 }
 
-.card-body {
-  padding: 2rem;
-}
+
 
 .card-footer {
   background: var(--light-bg);
@@ -207,7 +270,7 @@ p {
 .feature-card {
   padding: 2rem;
   border-radius: var(--border-radius);
-  background: white;
+  background: transparent;
   box-shadow: var(--shadow);
   transition: var(--transition);
   height: 100%;
@@ -223,32 +286,111 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Room Cards */
+.rooms-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.page-content {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Make section backgrounds transparent */
+.section {
+    background: transparent !important;
+}
+
+/* Make cards transparent */
 .room-card {
-  transition: var(--transition);
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* optional: subtle border */
+}
+
+.col-lg-4.col-md-6.mb-4 {
+    background-color: rgba(255, 255, 255, 0.2); /* translucent white */
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    backdrop-filter: blur(4px); /* Optional: frosted glass effect */
+}
+
+/* Make card headers and footers transparent */
+.card-header,
+.card-footer {
+    background-color: transparent !important;
+    color: #fff;
+}
+
+/* Text color adjustments for readability */
+.card-title,
+.card-text,
+.price,
+.lead,
+.page-header h1 {
+    color: #010101 !important;
 }
 
 .room-card:hover {
-  transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
-.room-card .card-title {
-  color: var(--primary-color);
-  font-weight: 600;
+.room-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.room-card .price {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent-color);
+.room-content {
+    padding: 1rem;
+    text-align: center;
+}
+
+.room-content h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.room-content .description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.room-content .price {
+    font-weight: bold;
+    color: #007b5e;
+    margin-bottom: 1rem;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features li {
+    font-size: 0.9rem;
+    color: #444;
+    padding: 0.2rem 0;
 }
 
 /* Menu Cards */
-.menu-card {
-  background: white;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
+
 
 .menu-card:hover {
   transform: translateY(-5px);
@@ -265,6 +407,27 @@ p {
   color: var(--accent-color);
   margin-top: 1rem;
 }
+.menu-section {
+  background-color: #ffffffcc; /* semi-transparent white */
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 3rem;
+}
+
+/* Add themed backgrounds for each section */
+.menu-section:nth-of-type(1) {
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+.menu-section:nth-of-type(2) {
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+}
+
+.menu-section:nth-of-type(3) {
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+}
+
 
 /* Forms */
 .form-container {
