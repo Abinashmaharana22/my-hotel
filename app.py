@@ -16,41 +16,93 @@ def rooms():
             'name': 'Deluxe Room',
             'description': 'King bed, sea view, free Wi-Fi, complimentary breakfast',
             'price': '₹3,999/night',
-            'features': ['King Size Bed', 'Sea View', 'Free Wi-Fi', 'Complimentary Breakfast', 'Air Conditioning', 'Mini Bar']
+            'features': ['King Size Bed', 'Sea View', 'Free Wi-Fi', 'Complimentary Breakfast', 'Air Conditioning', 'Mini Bar'],
+            'image': '/static/images/de.jpg'
         },
         {
             'name': 'Standard Room',
             'description': 'Queen bed, city view, air conditioning, free Wi-Fi',
             'price': '₹2,499/night',
-            'features': ['Queen Size Bed', 'City View', 'Free Wi-Fi', 'Air Conditioning', 'Cable TV', 'Room Service']
+            'features': ['Queen Size Bed', 'City View', 'Free Wi-Fi', 'Air Conditioning', 'Cable TV', 'Room Service'],
+            'image': '/static/images/st.jpg'
         },
         {
             'name': 'Suite Room',
             'description': 'Spacious suite with separate living area, premium amenities',
             'price': '₹5,999/night',
-            'features': ['Separate Living Area', 'Premium Amenities', 'Balcony', 'Complimentary Breakfast', 'Butler Service', 'Jacuzzi']
+            'features': ['Separate Living Area', 'Premium Amenities', 'Balcony', 'Complimentary Breakfast', 'Butler Service', 'Jacuzzi'],
+            'image': '/static/images/bg.jpg'
         }
+
     ]
     return render_template('rooms.html', title='Rooms & Rates', rooms=rooms_data)
 
 @app.route('/menu')
 def menu():
     menu_data = {
-        'starters': [
-            {'name': 'Tomato Basil Soup', 'description': 'Fresh tomatoes blended with basil and cream.', 'price': '₹120'},
-            {'name': 'Paneer Tikka', 'description': 'Grilled cottage cheese with Indian spices.', 'price': '₹180'},
-            {'name': 'Spicy Vegetable Pakora', 'description': 'Crispy fritters with seasonal vegetables and spices, served with tangy chutney.', 'price': '₹150'}
-        ],
-        'main_course': [
-            {'name': 'Butter Chicken', 'description': 'Creamy tomato-based chicken curry.', 'price': '₹250'},
-            {'name': 'Veg Biryani', 'description': 'Aromatic rice with mixed vegetables and spices.', 'price': '₹200'},
-            {'name': 'Fish Curry', 'description': 'Fresh fish simmered in spicy coconut gravy, served with steamed rice.', 'price': '₹230'}
-        ],
-        'desserts': [
-            {'name': 'Gulab Jamun', 'description': 'Soft milk-solid balls soaked in sugar syrup.', 'price': '₹90'},
-            {'name': 'Ice Cream', 'description': 'Vanilla, chocolate, and strawberry flavors.', 'price': '₹80'},
-            {'name': 'Rasgulla', 'description': 'Spongy cheese balls soaked in light sugar syrup, a classic Odia sweet treat.', 'price': '₹120'}
-        ]
+        
+    'starters': [
+        {
+            'name': 'Tomato Basil Soup',
+            'description': 'Fresh tomatoes blended with basil and cream.',
+            'price': '₹120',
+            'image': '/static/images/basil.jpg'
+        },
+        {
+            'name': 'Paneer Tikka',
+            'description': 'Grilled cottage cheese with Indian spices.',
+            'price': '₹180',
+            'image': '/static/images/paneer.jpg'
+        },
+        {
+            'name': 'Spicy Vegetable Pakora',
+            'description': 'Crispy fritters with seasonal vegetables and spices, served with tangy chutney.',
+            'price': '₹150',
+            'image': '/static/images/pakoda.webp'
+        }
+    ],
+    'main_course': [
+        {
+            'name': 'Butter Chicken',
+            'description': 'Creamy tomato-based chicken curry.',
+            'price': '₹250',
+            'image': '/static/images/butter.jpg'
+        },
+        {
+            'name': 'Veg Biryani',
+            'description': 'Aromatic rice with mixed vegetables and spices.',
+            'price': '₹200',
+            'image': './static/images/veg.jpg'
+        },
+        {
+            'name': 'Fish Curry',
+            'description': 'Fresh fish simmered in spicy coconut gravy, served with steamed rice.',
+            'price': '₹230',
+            'image': '/static/images/fish.webp'
+        }
+    ],
+    'desserts': [
+        {
+            'name': 'Gulab Jamun',
+            'description': 'Soft milk-solid balls soaked in sugar syrup.',
+            'price': '₹90',
+            'image': '/static/images/gulab.webp'
+        },
+        {
+            'name': 'Ice Cream',
+            'description': 'Vanilla, chocolate, and strawberry flavors.',
+            'price': '₹80',
+            'image': '/static/images/ice.webp'
+        },
+        {
+            'name': 'Rasgulla',
+            'description': 'Spongy cheese balls soaked in light sugar syrup, a classic Odia sweet treat.',
+            'price': '₹120',
+            'image': '/static/images/Rasagulla.webp'
+        }
+    ]
+
+
     }
     return render_template('menu.html', title='Dining Menu', menu=menu_data)
 
